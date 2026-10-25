@@ -1,0 +1,96 @@
+[
+  {
+    "name": "Public section pages and image-only games gallery",
+    "sanity": true,
+    "viewport": "desktop",
+    "covers": [
+      "separate section pages",
+      "public browsing",
+      "image-only games gallery",
+      "game detail modal"
+    ],
+    "description": "Verifies visitors can navigate the separate public sections and open a game image to see its details.",
+    "steps": [
+      "Open the homepage and select Games",
+      "Confirm the game gallery shows image tiles without titles or prices",
+      "Open a game tile"
+    ],
+    "expected": "A separate Games page is shown, tiles are image-only, and opening a tile shows game details and price."
+  },
+  {
+    "name": "Owner can create, edit and delete content with durable state",
+    "viewport": "desktop",
+    "covers": [
+      "owner content publishing",
+      "content update",
+      "content delete",
+      "database persistence",
+      "owner authorization"
+    ],
+    "description": "Verifies owner content management supports the full CRUD lifecycle and saves changes across reloads.",
+    "steps": [
+      "Sign in with the owner account",
+      "Create a new event with a title and description",
+      "Edit the event details and save",
+      "Refresh and confirm the updated details",
+      "Delete the event and confirm"
+    ],
+    "expected": "The event can be created, edited, retained after refresh, and deleted; non-owners cannot perform owner-only content writes."
+  },
+  {
+    "name": "Device image upload gives success or a finite error",
+    "viewport": "mobile",
+    "covers": [
+      "device image upload",
+      "image URL fallback",
+      "upload timeout",
+      "mobile owner dashboard"
+    ],
+    "description": "Verifies device image uploads attach to content when successful and failures do not leave the UI loading forever.",
+    "steps": [
+      "Open the owner dashboard on mobile",
+      "Select a valid image smaller than 4 MB",
+      "Publish a content item using the uploaded image",
+      "Try an unsupported or oversized image"
+    ],
+    "expected": "Successful uploads can be published and remain visible after refresh; invalid files or failed requests show an error and stop the loading state."
+  },
+  {
+    "name": "Purchase request lifecycle and private buyer history",
+    "viewport": "desktop",
+    "covers": [
+      "login required for purchase requests",
+      "pending purchase request persistence",
+      "owner approve or reject",
+      "buyer-specific request history",
+      "approval instructions"
+    ],
+    "description": "Verifies a signed-in buyer can create a pending request, the owner can decide it and the buyer sees instructions for approved requests.",
+    "steps": [
+      "Open a game and select Buy Now while signed out",
+      "Sign in and submit the request",
+      "Confirm it appears as Pending in My Purchase Requests",
+      "As owner, approve it and enter next-step instructions",
+      "Return to the buyer request list"
+    ],
+    "expected": "The request is persisted with the signed-in buyer, starts Pending, and displays the owner-provided instructions after approval; buyers cannot see other users' requests."
+  },
+  {
+    "name": "Owner dashboard metrics and staff permission boundaries",
+    "viewport": "mobile",
+    "covers": [
+      "recorded page view metrics",
+      "registered account count",
+      "staff role management",
+      "server-side permission checks"
+    ],
+    "description": "Verifies the owner can review dashboard counts and manage staff permissions while unauthorized users are denied.",
+    "steps": [
+      "Sign in as the owner and open the dashboard",
+      "Review page views, account, staff and pending-request counts",
+      "Grant a test member a limited staff permission",
+      "Attempt an owner-only action as that staff member"
+    ],
+    "expected": "Dashboard counts are based on recorded data, staff permissions are saved, and a staff account cannot perform actions outside its assigned permissions."
+  }
+]
